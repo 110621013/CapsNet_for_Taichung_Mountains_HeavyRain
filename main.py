@@ -93,7 +93,7 @@ def train(model, supervisor, num_label):
 def evaluation(model, supervisor, num_label):
     teX, teY, num_te_batch = load_data(cfg.dataset, cfg.batch_size, is_training=False)
     ###
-    try:fd_test_acc = save_to()[0] #save_to() -> save_to()[0]   (tuple->IOstream)
+    try:fd_test_acc = save_to()[0] #(try tuple->except IOstream)
     except TypeError:fd_test_acc = save_to()
     ###
     with supervisor.managed_session(config=tf.ConfigProto(allow_soft_placement=True)) as sess:
@@ -128,4 +128,4 @@ def main(_):
         evaluation(model, sv, num_label)
 
 if __name__ == "__main__":
-    tf.app.run() #tf.compat.v1.app.run
+    tf.app.run()

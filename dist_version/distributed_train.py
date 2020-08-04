@@ -80,13 +80,22 @@ def main(_):
         global_step = tf.get_variable('global_step', [],
                                   initializer=tf.constant_initializer(0),
                                   trainable=False)
-
-        num_batches_per_epoch = int(60000/(cfg.batch_size_per_gpu*cfg.num_gpu))
+        ###
+        if cfg.dataset == 'mnist' or cfg.dataset == 'fashion-mnist':
+            num_batches_per_epoch = int(60000/(cfg.batch_size_per_gpu*cfg.num_gpu))
+        elif cfg.dataset == 'myself':
+            num_batches_per_epoch = int(719/(cfg.batch_size_per_gpu*cfg.num_gpu))
+        ###
 
         opt = tf.train.AdamOptimizer()
 
         batch_x, batch_labels = create_inputs()
-        batch_y = tf.one_hot(batch_labels, depth=10, axis=1, dtype=tf.float32)
+        ###
+        if cfg.dataset == 'mnist' or cfg.dataset == 'fashion-mnist':
+            batch_y = tf.one_hot(batch_labels, depth=10, axis=1, dtype=tf.float32)
+        elif cfg.dataset == 'myself':
+            batch_y = tf.one_hot(batch_labels, depth=2, axis=1, dtype=tf.float32)
+        ###
         input_summaries = copy.copy(tf.get_collection(tf.GraphKeys.SUMMARIES))
 
         x_splits = tf.split(axis=0, num_or_size_splits=cfg.num_gpu, value=batch_x)
