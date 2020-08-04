@@ -1,0 +1,7 @@
+*__pycache__
+data/
+#.ropeproject
+logdir/
+myself/original_dataset(473+246train)/
+myself/test-images/
+myself/training-images/

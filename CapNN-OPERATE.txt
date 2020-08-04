@@ -1,0 +1,13 @@
+conda activate tensorflow
+
+python download_data.py
+python download_data.py --dataset fashion-mnist --save_to data/fashion-mnist
+
+python main.py
+python main.py --dataset fashion-mnist
+python main.py --dataset myself
+#tensorboard --logdir=logdir
+
+python main.py --is_training=False
+python main.py --dataset fashion-mnist --is_training=False
+python main.py --dataset myself --is_training=False
