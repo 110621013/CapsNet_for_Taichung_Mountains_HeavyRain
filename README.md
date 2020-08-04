@@ -59,6 +59,8 @@ $ gunzip data/mnist/*.gz
 $ python main.py
 $ # or training for fashion-mnist dataset
 $ python main.py --dataset fashion-mnist
+$ # or training for myself dataset
+$ python main.py --dataset myself
 $ # If you need to monitor the training process, open tensorboard with this command
 $ tensorboard --logdir=logdir
 $ # or use `tail` command on linux system
@@ -71,6 +73,8 @@ $ tail -f results/val_acc.csv
 $ python main.py --is_training=False
 $ # for fashion-mnist dataset
 $ python main.py --dataset fashion-mnist --is_training=False
+$ # for myself dataset
+$ python main.py --dataset myself --is_training=False
 ```
 
 > **Note:** The default parameters of batch size is 128, and epoch 50. You may need to modify the ``config.py`` file or use command line parameters to suit your case, e.g. set batch size to 64 and do once test summary every 200 steps: ``python main.py  --test_sum_freq=200 --batch_size=48``
